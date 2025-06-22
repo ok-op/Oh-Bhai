@@ -95,61 +95,60 @@
   <div class="output" id="output"></div>
 
   <script>
-  async function download() {
-    const url = document.getElementById('url').value.trim();
-    const output = document.getElementById('output');
-    output.innerHTML = '';
+    async function download() {
+      const url = document.getElementById('url').value.trim();
+      const output = document.getElementById('output');
+      output.innerHTML = '';
 
-    if (!url) {
-      alert('Please enter an Instagram URL.');
-      return;
-    }
-
-    output.innerHTML = '⏳ Processing...';
-
-    try {
-      const res = await fetch('https://social-media-api-chi.vercel.app/api/instagram', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url })
-      });
-      const data = await res.json();
-
-      if (data.status === 'success') {
-        output.innerHTML = `
-          <h2>✅ ${data.postType}</h2>
-
-          <div class="caption-box">
-            <blockquote>${data.caption ? data.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
-          </div>
-
-          <div class="count">Total Media: ${data.totalMedia}</div>
-        `;
-
-        // ✅ Album Support → show all media with proxy URL
-        data.downloads.forEach((media, index) => {
-          const proxyUrl = `https://social-media-api-chi.vercel.app/proxy?url=${encodeURIComponent(media.url)}`;
-          output.innerHTML += `
-            <div style="margin-top:15px;">
-              ${
-                media.type === 'video'
-                  ? `<video class="media" controls src="${proxyUrl}"></video>`
-                  : `<img class="media" src="${proxyUrl}" alt="Media ${index + 1}">`
-              }
-              <br>
-              <a class="download-btn" href="${proxyUrl}" download>⬇️ Download Media ${index + 1}</a>
-            </div>
-          `;
-        });
-
-      } else {
-        output.innerHTML = `❌ ${data.details}`;
+      if (!url) {
+        alert('Please enter an Instagram URL.');
+        return;
       }
-    } catch (error) {
-      output.innerHTML = `❌ Something went wrong`;
-      console.error(error);
+
+      output.innerHTML = '⏳ Processing...';
+
+      try {
+        const res = await fetch('https://social-media-api-chi.vercel.app/api/instagram', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await res.json();
+
+        if (data.status === 'success') {
+          output.innerHTML = `
+            <h2>✅ ${data.postType}</h2>
+
+            <div class="caption-box">
+              <blockquote>${data.caption ? data.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
+            </div>
+
+            <div class="count">Total Media: ${data.totalMedia}</div>
+          `;
+
+          data.downloads.forEach((media, index) => {
+            const proxyUrl = `https://social-media-api-chi.vercel.app/proxy?url=${encodeURIComponent(media.url)}`;
+            output.innerHTML += `
+              <div style="margin-top:15px;">
+                ${
+                  media.type === 'video'
+                    ? `<video class="media" controls src="${proxyUrl}"></video>`
+                    : `<img class="media" src="${proxyUrl}" alt="Media ${index + 1}">`
+                }
+                <br>
+                <a class="download-btn" href="${proxyUrl}" download>⬇️ Download Media ${index + 1}</a>
+              </div>
+            `;
+          });
+
+        } else {
+          output.innerHTML = `❌ ${data.details}`;
+        }
+      } catch (error) {
+        output.innerHTML = `❌ Something went wrong`;
+        console.error(error);
+      }
     }
-  }
   </script>
 
 </body>
