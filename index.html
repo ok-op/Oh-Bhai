@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram ভিডিও ডাউনলোডার</title>
+  <title>Instagram Downloader</title>
   <style>
     body {
       font-family: sans-serif;
-      background: #f7f7f7;
+      background: #f0f2f5;
       padding: 20px;
       text-align: center;
     }
@@ -36,33 +36,67 @@
     }
     .output {
       margin-top: 20px;
-      text-align: left;
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-align: left;
     }
-    video, img {
+    .thumbnail {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
+      margin: 10px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .caption-box {
+      background: #fff;
+      padding: 10px 15px;
       margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      font-size: 14px;
+      color: #333;
+    }
+    .caption-box blockquote {
+      margin: 0;
+      font-style: italic;
+      color: #555;
+    }
+    video, img.media {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .download-btn {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 8px;
       background: #28a745;
       color: #fff;
-      padding: 8px 15px;
+      padding: 8px 14px;
       border-radius: 6px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .download-btn:hover {
+      background: #218838;
+    }
+    .count {
+      margin-top: 5px;
+      color: #333;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
-  <h1>📥 Instagram ভিডিও ডাউনলোডার</h1>
-  <input type="text" id="url" placeholder="ইন্সটাগ্রাম লিংক পেস্ট করুন...">
+  <h1>📥 Instagram Downloader</h1>
+  <input type="text" id="url" placeholder="Paste Instagram URL here...">
   <br>
-  <button onclick="download()">ডাউনলোড করুন</button>
+  <button onclick="download()">Download</button>
 
   <div class="output" id="output"></div>
 
@@ -73,11 +107,11 @@
       output.innerHTML = '';
 
       if (!url) {
-        alert('অনুগ্রহ করে Instagram লিংক দিন');
+        alert('Please enter an Instagram URL.');
         return;
       }
 
-      output.innerHTML = '⏳ ভিডিও প্রসেস হচ্ছে...';
+      output.innerHTML = '⏳ Processing...';
 
       try {
         const res = await fetch('https://social-media-api-chi.vercel.app/api/instagram', {
@@ -88,23 +122,37 @@
         const data = await res.json();
 
         if (data.status === 'success') {
-          const media = data.downloads[0]; // শুধু প্রথমটা দেখাচ্ছি
           output.innerHTML = `
             <h2>✅ ${data.postType}</h2>
-            <img src="${media.thumbnail}" alt="Thumbnail">
-            <p>${data.caption.replace(/\n/g, '<br>')}</p>
-            ${
-              media.type === 'video'
-                ? `<video controls src="${media.url}"></video>`
-                : `<img src="${media.url}" alt="Image">`
-            }
-            <a class="download-btn" href="${media.url}" download>⬇️ ডাউনলোড করুন</a>
+            <img class="thumbnail" src="${data.downloads[0].thumbnail}" alt="Thumbnail">
+
+            <div class="caption-box">
+              <blockquote>${data.caption ? data.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
+            </div>
+
+            <div class="count">Total Media: ${data.totalMedia}</div>
           `;
+
+          // ✅ Album Support → show all media
+          data.downloads.forEach((media, index) => {
+            output.innerHTML += `
+              <div style="margin-top:15px;">
+                ${
+                  media.type === 'video'
+                    ? `<video class="media" controls src="${media.url}"></video>`
+                    : `<img class="media" src="${media.url}" alt="Media ${index + 1}">`
+                }
+                <br>
+                <a class="download-btn" href="${media.url}" download>⬇️ Download Media ${index + 1}</a>
+              </div>
+            `;
+          });
+
         } else {
           output.innerHTML = `❌ ${data.details}`;
         }
       } catch (error) {
-        output.innerHTML = `❌ কিছু ভুল হয়েছে`;
+        output.innerHTML = `❌ Something went wrong`;
         console.error(error);
       }
     }
