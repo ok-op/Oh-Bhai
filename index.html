@@ -340,6 +340,26 @@
       align-items: center;
       gap: 10px;
     }
+    
+    .media-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 15px 0;
+    }
+    
+    .error-box {
+      background: rgba(255, 100, 100, 0.2);
+      backdrop-filter: blur(5px);
+      padding: 15px;
+      border-radius: 15px;
+      width: 100%;
+      font-size: 15px;
+      color: #fff;
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 0 10px rgba(255, 100, 100, 0.3);
+      border: 1px solid rgba(255, 100, 100, 0.3);
+    }
 
     /* Responsive design */
     @media (max-width: 600px) {
@@ -354,6 +374,11 @@
       .water-container {
         padding: 20px 15px;
       }
+      
+      .btn-3d {
+        padding: 14px 30px;
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -362,7 +387,7 @@
     <div class="water-container">
       <div class="header">
         <h1><i class="fas fa-cloud-download-alt"></i> Premium Downloader</h1>
-        <p>Download Instagram photos, videos, and reels in high quality with our premium service</p>
+        <p>Download Instagram photos, videos, and reels in high quality</p>
       </div>
       
       <div class="input-container">
@@ -397,42 +422,37 @@
 
       output.innerHTML = '<div class="processing"><i class="fas fa-spinner fa-spin"></i> Processing your request...</div>';
 
-      // Simulate API call with mock data for demonstration
-      setTimeout(() => {
-        const mockData = {
-          status: 'success',
-          postType: 'Video Post',
-          caption: 'Beautiful sunset at the beach 🌅\n#sunset #beach #vacation #nature #travel',
-          totalMedia: 1,
-          downloads: [
-            {
-              type: 'video',
-              url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4'
-            }
-          ]
-        };
+      try {
+        const res = await fetch('https://social-media-api-chi.vercel.app/api/instagram', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        
+        const data = await res.json();
 
-        if (mockData.status === 'success') {
+        if (data.status === 'success') {
           output.innerHTML = `
-            <h2>✅ ${mockData.postType}</h2>
+            <h2>✅ ${data.postType}</h2>
 
             <div class="caption-box">
-              <blockquote>${mockData.caption ? mockData.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
+              <blockquote>${data.caption ? data.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
             </div>
 
-            <div class="count">Total Media: ${mockData.totalMedia}</div>
+            <div class="count">Total Media: ${data.totalMedia}</div>
           `;
 
-          mockData.downloads.forEach((media, index) => {
+          data.downloads.forEach((media, index) => {
+            const proxyUrl = `https://social-media-api-chi.vercel.app/proxy?url=${encodeURIComponent(media.url)}`;
             output.innerHTML += `
-              <div style="margin-top:20px; width: 100%;">
+              <div class="media-container">
                 ${
                   media.type === 'video'
-                    ? `<video class="media" controls src="${media.url}" style="width: 100%;"></video>`
-                    : `<img class="media" src="${media.url}" alt="Media ${index + 1}" style="width: 100%;">`
+                    ? `<video class="media" controls src="${proxyUrl}"></video>`
+                    : `<img class="media" src="${proxyUrl}" alt="Media ${index + 1}">`
                 }
                 <br>
-                <a class="download-btn" href="${media.url}" download>
+                <a class="download-btn" href="${proxyUrl}" download>
                   <i class="fas fa-download"></i> Download Media ${index + 1}
                 </a>
               </div>
@@ -440,9 +460,12 @@
           });
 
         } else {
-          output.innerHTML = `<div class="caption-box">❌ Unable to download. Please check the URL and try again.</div>`;
+          output.innerHTML = `<div class="error-box">❌ ${data.details || 'Failed to download content'}</div>`;
         }
-      }, 1500);
+      } catch (error) {
+        output.innerHTML = `<div class="error-box">❌ Something went wrong. Please try again later.</div>`;
+        console.error(error);
+      }
     }
   </script>
 </body>
