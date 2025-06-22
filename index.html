@@ -41,12 +41,6 @@
       align-items: center;
       text-align: left;
     }
-    .thumbnail {
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 10px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
     .caption-box {
       background: #fff;
       padding: 10px 15px;
@@ -124,7 +118,6 @@
         if (data.status === 'success') {
           output.innerHTML = `
             <h2>✅ ${data.postType}</h2>
-            <img class="thumbnail" src="${data.downloads[0].thumbnail}" alt="Thumbnail">
 
             <div class="caption-box">
               <blockquote>${data.caption ? data.caption.replace(/\n/g, '<br>') : 'No caption available.'}</blockquote>
