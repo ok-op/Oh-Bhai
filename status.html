@@ -245,6 +245,11 @@
     /* Button */
     .btn-container {
       margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+      max-width: 350px;
     }
     
     .btn {
@@ -263,16 +268,141 @@
       transition: all 0.3s ease;
       text-decoration: none;
       box-shadow: 0 8px 20px rgba(0, 255, 195, 0.3);
+      text-align: center;
+      width: 100%;
+    }
+    
+    .btn.pom-pom {
+      background: linear-gradient(145deg, #ff3399, #cc66ff);
     }
     
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 25px rgba(0, 255, 195, 0.4);
-      background: linear-gradient(145deg, var(--secondary), var(--accent));
+    }
+    
+    .btn.pom-pom:hover {
+      background: linear-gradient(145deg, #cc66ff, #ff3399);
+      box-shadow: 0 12px 25px rgba(204, 102, 255, 0.4);
     }
     
     .btn:active {
       transform: translateY(0);
+    }
+    
+    /* RSS Feed Container */
+    .rss-container {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    
+    .rss-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary), var(--primary));
+      background-size: 200% 200%;
+      animation: gradientMove 3s linear infinite;
+    }
+    
+    .rss-header {
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .rss-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    
+    .rss-link-container {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .rss-link {
+      color: white;
+      font-size: 1rem;
+      font-family: monospace;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px;
+      flex-grow: 1;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+    }
+    
+    .copy-btn {
+      background: linear-gradient(145deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    
+    .copy-btn:hover {
+      background: linear-gradient(145deg, var(--secondary), var(--accent));
+      transform: translateY(-2px);
+    }
+    
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+    
+    /* Toast notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(145deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+    }
+    
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
     
     /* Footer */
@@ -366,6 +496,24 @@
         padding: 12px 25px;
         font-size: 1rem;
       }
+      
+      .rss-container {
+        padding: 20px;
+      }
+      
+      .rss-link-container {
+        flex-direction: column;
+      }
+      
+      .rss-link {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+      }
+      
+      .copy-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -425,6 +573,27 @@
       <a href="https://t.me/Opleech_WD" class="btn" target="_blank">
         <i class="fab fa-telegram-plane"></i> Join Our Telegram Channel
       </a>
+      
+      <a href="https://sudor2spr.github.io/Yo-yo-Pom-pom-Singh/" class="btn pom-pom" target="_blank">
+        <i class="fas fa-film"></i> Pom-Pom Singh Player
+      </a>
+    </div>
+    
+    <!-- RSS Feed Container -->
+    <div class="rss-container">
+      <div class="rss-header">
+        <i class="fas fa-rss"></i> RSS Feed Integration
+      </div>
+      <div class="rss-description">
+        Use the RSS feed link below to integrate with your applications.
+        Click the copy button to easily copy it to your clipboard.
+      </div>
+      <div class="rss-link-container">
+        <div class="rss-link" id="rss-link">https://pom-api-orpin.vercel.app/rss</div>
+        <button class="copy-btn" onclick="copyRssLink()">
+          <i class="fas fa-copy"></i> Copy Link
+        </button>
+      </div>
     </div>
   </div>
   
@@ -432,7 +601,10 @@
     © 2025 Pornrips API • Developed by <strong>𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭</strong> • All rights reserved
   </div>
   
-  <!-- JavaScript Typing Animation -->
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Link copied to clipboard!</div>
+  
+  <!-- JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const words = ["Pornrips.to Feed is online and fully operational...", 
@@ -467,6 +639,25 @@
       
       type();
     });
+    
+    // Copy RSS Link Function
+    function copyRssLink() {
+      const rssLink = document.getElementById('rss-link');
+      const textArea = document.createElement('textarea');
+      textArea.value = rssLink.textContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      // Show toast notification
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
   </script>
 </body>
 </html>
