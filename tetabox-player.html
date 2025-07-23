@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeraBox Premium Video Stream & Download</title>
+    <title>TeraBox Video Stream & Download</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,7 +35,7 @@
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding: 20px;
             animation: fadeIn 1s ease;
         }
@@ -58,7 +58,7 @@
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             background: linear-gradient(45deg, #4cc9f0, #f72585);
             -webkit-background-clip: text;
             background-clip: text;
@@ -82,7 +82,7 @@
             background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 35px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
             margin-bottom: 40px;
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -92,11 +92,11 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         label {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #4cc9f0;
             display: flex;
@@ -112,16 +112,19 @@
 
         input {
             flex: 1;
-            min-width: 300px;
-            padding: 18px 25px;
+            min-width: 0; /* Allow input to shrink */
+            padding: 16px 22px;
             border-radius: 15px;
             border: none;
             background: rgba(15, 23, 42, 0.7);
             color: #f8f9fa;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             border: 2px solid rgba(76, 201, 240, 0.2);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         input:focus {
@@ -134,9 +137,9 @@
             background: linear-gradient(45deg, #4361ee, #3a0ca3);
             color: white;
             border: none;
-            padding: 18px 40px;
+            padding: 16px 35px;
             border-radius: 15px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -146,6 +149,7 @@
             gap: 10px;
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .submit-btn::after {
@@ -174,7 +178,7 @@
         }
 
         .submit-btn i {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         .result-section {
@@ -182,7 +186,7 @@
             background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 35px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
             margin-top: 20px;
             width: 100%;
@@ -207,28 +211,18 @@
             object-fit: cover;
         }
 
-        .thumbnail-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        
-
-        .play-icon {
+        .resolution-badge {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: rgba(255, 255, 255, 0.8);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .thumbnail:hover .play-icon {
-            opacity: 1;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            z-index: 10;
+            backdrop-filter: blur(4px);
         }
 
         .info-container {
@@ -249,7 +243,7 @@
         }
 
         .info-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #4cc9f0;
             margin-bottom: 10px;
             font-weight: 600;
@@ -259,16 +253,17 @@
         }
 
         .info-value {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 500;
             color: #f8f9fa;
             word-break: break-word;
+            line-height: 1.4;
         }
 
         .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
             margin-top: 20px;
         }
@@ -277,9 +272,9 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 18px 35px;
+            padding: 16px 32px;
             border-radius: 15px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -413,7 +408,7 @@
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
             }
             
             .input-section, .result-section {
@@ -438,7 +433,7 @@
             <div class="logo">
                 <i class="fas fa-play-circle"></i>
             </div>
-            <h1>TeraBox Premium Video Stream & Download</h1>
+            <h1>TeraBox Video Stream & Download</h1>
             <p class="subtitle">Paste any TeraBox link to instantly stream and download high-quality videos</p>
         </header>
 
@@ -466,6 +461,7 @@
                 <video id="video-player" controls>
                     Your browser does not support the video tag.
                 </video>
+                <div class="resolution-badge" id="resolution-badge">1080p</div>
             </div>
 
             <div class="info-container">
@@ -504,7 +500,7 @@
         </section>
 
         <div class="developer">
-            Powered by <a href="#" target="_blank">WOODcraft</a> • Premium Video Streaming Service
+            Powered by <a href="https://t.me/Farooq_is_king" target="_blank">𝐖𝐎𝐎𝐃𝐜𝐫𝐚𝐟𝐭</a> • Premium Video Streaming Service
         </div>
     </div>
 
@@ -520,6 +516,7 @@
             const statusEl = document.getElementById('status');
             const downloadBtn = document.getElementById('download-btn');
             const streamBtn = document.getElementById('stream-btn');
+            const resolutionBadge = document.getElementById('resolution-badge');
             
             // API endpoint
             const API_ENDPOINT = "https://silent-noor-stream-api.woodmirror.workers.dev/api?url=";
@@ -577,6 +574,9 @@
                 // Set video source
                 videoPlayer.src = data.streaming_url;
                          
+                // Set resolution badge
+                const resolution = getResolution(data.file_size);
+                resolutionBadge.textContent = resolution;
                 
                 // Set info
                 fileName.textContent = data.file_name || "Unknown Video";
@@ -591,17 +591,22 @@
                 // Set stream link
                 streamBtn.href = data.streaming_url || "#";
                 
-                // Make thumbnail clickable
-                thumbnail.onclick = function() {
-                    window.open(data.streaming_url, '_blank');
-                };
-                
                 // Show result section with animation
-                resultSec.style.display = 'block';
-                resultSection.style.animation = 'fadeIn 0.8s ease';
+                resultSection.style.display = 'block';
                 
                 // Scroll to results
                 resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            function getResolution(fileSize) {
+                // Simplified logic to determine resolution based on file size
+                if (!fileSize) return "HD";
+                
+                const sizeInMB = parseFloat(fileSize);
+                if (sizeInMB > 500) return "1080p";
+                if (sizeInMB > 200) return "720p";
+                if (sizeInMB > 100) return "480p";
+                return "SD";
             }
             
             function showError(message) {
