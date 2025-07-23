@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Flipping Profile Cards</title>
+    <title>Profile group channel list</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -91,7 +91,7 @@
         
         .card-container {
             perspective: 1500px;
-            height: 370px;
+            height: 500px; /* Increased height for bio visibility */
             width: 100%;
             max-width: 330px;
             display: flex;
@@ -246,8 +246,24 @@
             margin-bottom: 15px;
             color: #e0e0e0;
             flex-grow: 1;
-            max-height: 70px;
-            overflow: hidden;
+            overflow-y: auto;
+            max-height: 150px;
+            padding: 5px;
+            width: 100%;
+        }
+        
+        .user-bio::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .user-bio::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .user-bio::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 10px;
         }
         
         .user-link {
@@ -364,7 +380,7 @@
             
             .card-container {
                 max-width: 300px;
-                height: 350px;
+                height: 480px;
             }
             
             .btn-3d {
@@ -383,7 +399,7 @@
                 max-width: 100%;
                 width: 100%;
                 max-width: 420px;
-                height: 350px;
+                height: 450px;
             }
             
             .header h1 {
@@ -420,6 +436,7 @@
             .user-bio {
                 font-size: 0.95rem;
                 margin-bottom: 12px;
+                max-height: 120px;
             }
         }
         
@@ -467,6 +484,7 @@
             
             .user-bio {
                 font-size: 0.9rem;
+                max-height: 110px;
             }
             
             .user-link {
@@ -509,6 +527,14 @@
                 max-width: 200px;
                 width: 100%;
             }
+            
+            .card-container {
+                height: 470px;
+            }
+            
+            .user-bio {
+                max-height: 130px;
+            }
         }
     </style>
 </head>
@@ -518,7 +544,7 @@
             ❖ 𝐖𝐃 𝐙𝐎𝐍𝐄 ❖ ™
         </div>
         <h1>My Profile group channel list</h1>
-        <p>Click on any button to flip the card and reveal profile details.</p>
+        <p>Click on any button group and channel reveal profile details.</p>
         
         <a href="https://t.me/Opleech_WD" class="channel-link" target="_blank">
             <i class="fab fa-telegram"></i> Join Our Telegram Channel
@@ -544,8 +570,8 @@
                         🪑 Custom-made modern furniture crafted with precision  
                         🛠️ Quality craftsmanship, attention to detail, and on-time delivery  
                         📍 Experienced in homes, offices, and commercial projects  
-                         📞 DM to discuss your project and get a free consultation!
-                        .</p>
+                        📞 DM to discuss your project and get a free consultation!
+                    </p>
                     <a href="https://t.me/Farooq_is_king" class="user-link">
                         <i class="fab fa-telegram"></i> Contact Me
                     </a>
@@ -573,7 +599,7 @@
                     </div>
                     <h3 class="user-name">WD ZONE Channel</h3>
                     <div class="user-title">Premium Web Design Resources</div>
-                    <p class="user-bio">Get Free web design resources, premium templates, UI kits, and design inspiration. Join our growing community of designers.</p>
+                    <p class="user-bio">Get Free web design resources, premium templates, UI kits, and design inspiration. Join our growing community of designers and developers for daily updates and exclusive content.</p>
                     <a href="https://t.me/Opleech_WD" class="user-link">
                         <i class="fab fa-telegram"></i> Join Channel
                     </a>
@@ -597,18 +623,18 @@
                 </div>
                 <div class="card-face card-back">
                     <div class="profile-img">
-                        <img src="https://i.ibb.co/j9n6nZxD/Op-log.png" alt="Group">
+                        <img src="https://i.ibb.co/PZvwfV8d/mage-sister-dp.jpg" alt="Group">
                     </div>
                     <h3 class="user-name">WD ZONE Community</h3>
                     <div class="user-title">Web Designers Community</div>
-                    <p class="user-bio">Join our active community of web designers and developers. Get help, share your work, and collaborate with fellow designers.</p>
+                    <p class="user-bio">Join our active community of web designers and developers. Get help, share your work, and collaborate with fellow designers. We host weekly challenges, Q&A sessions, and provide feedback on projects.</p>
                     <a href="https://t.me/+U41ug0FZw2gxMzM1" class="user-link">
                         <i class="fab fa-telegram"></i> Join Group
                     </a>
                 </div>
             </div>
             <div class="card-links">
-                <a href="https://i.ibb.co/j9n6nZxD/Op-log.png" class="photo-link">
+                <a href="https://i.ibb.co/PZvwfV8d/mage-sister-dp.jpg" class="photo-link">
                     <i class="fas fa-image"></i> Group Photo
                 </a>
                 <a href="https://t.me/+U41ug0FZw2gxMzM1" class="btn-link">
