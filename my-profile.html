@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Telegram Profile Cards</title>
+    <title>3D Flipping Profile Cards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,22 +19,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 15px;
             color: white;
             overflow-x: hidden;
         }
         
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            padding: 0 20px;
+            max-width: 900px;
+            padding: 0 15px;
         }
         
         .header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 2.4rem;
+            margin-bottom: 12px;
             background: linear-gradient(to right, #00c6ff, #0072ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -43,7 +43,7 @@
         }
         
         .header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
             line-height: 1.6;
             margin-top: 15px;
@@ -54,7 +54,7 @@
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-            padding: 12px 30px;
+            padding: 12px 25px;
             background: linear-gradient(to right, #4A00E0, #8E2DE2);
             color: white;
             text-decoration: none;
@@ -62,6 +62,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
         }
         
         .channel-link:hover {
@@ -72,7 +73,7 @@
         
         .channel-name {
             margin-top: 15px;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #FFD700;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
@@ -82,17 +83,19 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 35px;
+            gap: 30px;
             width: 100%;
-            max-width: 1300px;
-            margin: 30px auto;
+            max-width: 1200px;
+            margin: 20px auto;
         }
         
         .card-container {
             perspective: 1500px;
-            height: 380px;
+            height: 370px;
             width: 100%;
-            max-width: 350px;
+            max-width: 330px;
+            display: flex;
+            flex-direction: column;
         }
         
         .card {
@@ -104,6 +107,7 @@
             cursor: pointer;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             border-radius: 20px;
+            flex: 1;
         }
         
         .card.flipped {
@@ -120,7 +124,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             overflow: hidden;
         }
@@ -132,11 +136,13 @@
         .card-back {
             background: linear-gradient(135deg, #141E30, #243B55);
             transform: rotateY(180deg);
+            padding: 20px;
+            justify-content: space-around;
         }
         
         .btn-3d {
-            padding: 20px 50px;
-            font-size: 1.4rem;
+            padding: 16px 35px;
+            font-size: 1.3rem;
             font-weight: bold;
             background: linear-gradient(to bottom, #FFD700, #FFA500);
             border: none;
@@ -150,6 +156,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            width: 90%;
+            max-width: 260px;
         }
         
         .btn-3d:after {
@@ -178,14 +186,14 @@
         }
         
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            border: 6px solid rgba(255, 215, 0, 0.3);
+            border: 5px solid rgba(255, 215, 0, 0.3);
             position: relative;
-            margin-bottom: 25px;
+            margin: 5px 0 15px;
             overflow: hidden;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
         
         .profile-img img {
@@ -200,10 +208,10 @@
         .profile-img::before {
             content: "";
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
             background: conic-gradient(
                 #FFD700, #FF8C00, #FF4500, #FF8C00, #FFD700
             );
@@ -218,32 +226,35 @@
         }
         
         .user-name {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #FFD700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
         }
         
         .user-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #00c6ff;
         }
         
         .user-bio {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
             color: #e0e0e0;
+            flex-grow: 1;
+            max-height: 70px;
+            overflow: hidden;
         }
         
         .user-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 30px;
+            padding: 10px 25px;
             background: linear-gradient(to right, #00c6ff, #0072ff);
             color: white;
             text-decoration: none;
@@ -251,6 +262,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+            font-size: 0.95rem;
+            margin: 5px 0;
         }
         
         .user-link:hover {
@@ -261,9 +274,10 @@
         .card-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 25px;
+            gap: 15px;
+            margin-top: 15px;
             width: 100%;
+            flex-wrap: wrap;
         }
         
         .photo-link, .btn-link {
@@ -271,13 +285,14 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.3s ease;
             flex: 1;
-            max-width: 150px;
+            min-width: 130px;
+            max-width: 160px;
         }
         
         .photo-link {
@@ -294,13 +309,13 @@
         
         .photo-link:hover, .btn-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
         
         .footer {
-            margin-top: 60px;
+            margin-top: 40px;
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             width: 100%;
             background: rgba(0, 0, 0, 0.25);
             border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -308,12 +323,12 @@
         }
         
         .developer {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
         }
         
@@ -326,35 +341,35 @@
         
         .developer a:hover {
             text-decoration: underline;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         }
         
         .copyright {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.8;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         /* Responsive Design */
         @media (max-width: 1200px) {
             .container {
-                gap: 30px;
+                gap: 25px;
             }
         }
         
         @media (max-width: 992px) {
             .header h1 {
-                font-size: 2.4rem;
+                font-size: 2.1rem;
             }
             
             .card-container {
-                max-width: 320px;
-                height: 360px;
+                max-width: 300px;
+                height: 350px;
             }
             
             .btn-3d {
-                padding: 18px 40px;
-                font-size: 1.3rem;
+                padding: 14px 30px;
+                font-size: 1.2rem;
             }
         }
         
@@ -367,62 +382,131 @@
             .card-container {
                 max-width: 100%;
                 width: 100%;
-                max-width: 450px;
-                height: 380px;
+                max-width: 420px;
+                height: 350px;
             }
             
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .header p {
-                font-size: 1.1rem;
+                font-size: 1.05rem;
             }
             
             .channel-name {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+            
+            .btn-3d {
+                padding: 15px 30px;
+                font-size: 1.25rem;
+            }
+            
+            .card-back {
+                padding: 20px 15px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 12px;
+            }
+            
+            .user-name {
+                font-size: 1.4rem;
+            }
+            
+            .user-bio {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
             }
         }
         
         @media (max-width: 480px) {
             body {
-                padding: 30px 15px;
+                padding: 25px 10px;
             }
             
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             
             .header p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+            }
+            
+            .channel-name {
+                font-size: 1.3rem;
+            }
+            
+            .channel-link {
+                padding: 10px 20px;
+                font-size: 0.95rem;
             }
             
             .btn-3d {
-                padding: 16px 35px;
-                font-size: 1.2rem;
+                padding: 14px 25px;
+                font-size: 1.15rem;
+                max-width: 240px;
             }
             
             .profile-img {
-                width: 120px;
-                height: 120px;
+                width: 90px;
+                height: 90px;
             }
             
             .user-name {
-                font-size: 1.6rem;
+                font-size: 1.3rem;
+            }
+            
+            .user-title {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
             }
             
             .user-bio {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+            }
+            
+            .user-link {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .card-links {
+                gap: 10px;
+                margin-top: 12px;
+            }
+            
+            .photo-link, .btn-link {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                min-width: 120px;
+            }
+            
+            .developer {
+                font-size: 1rem;
+            }
+            
+            .copyright {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 380px) {
+            .btn-3d {
+                padding: 12px 20px;
+                font-size: 1.1rem;
             }
             
             .card-links {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
             }
             
             .photo-link, .btn-link {
-                max-width: 220px;
+                max-width: 200px;
                 width: 100%;
             }
         }
@@ -433,8 +517,8 @@
         <div class="channel-name">
             ❖ 𝐖𝐃 𝐙𝐎𝐍𝐄 ❖ ™
         </div>
-        <h1>3D Telegram Profile Cards</h1>
-        <p>Click on any button below to flip the card and reveal Telegram channel details. Each card features unique information and links for our Telegram community.</p>
+        <h1>3D Flipping Profile Cards</h1>
+        <p>Click on any button to flip the card and reveal profile details. Fully responsive design optimized for all devices.</p>
         
         <a href="https://t.me/Opleech_WD" class="channel-link" target="_blank">
             <i class="fab fa-telegram"></i> Join Our Telegram Channel
