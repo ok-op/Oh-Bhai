@@ -214,56 +214,7 @@
             margin-bottom: 30px;
         }
 
-        .thumbnail-label {
-            font-size: 1.3rem;
-            color: #f72585;
-            margin-bottom: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .thumbnail {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            position: relative;
-        }
-
-        .thumbnail::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .thumbnail:hover::before {
-            opacity: 1;
-        }
-
-        .thumbnail:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border-color: #4cc9f0;
-        }
-
-        .thumbnail img {
-            width: 100%;
-            display: block;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
+        
 
         .play-icon {
             position: absolute;
@@ -517,18 +468,6 @@
                 </video>
             </div>
 
-            <div class="thumbnail-container">
-                <div class="thumbnail-label">
-                    <i class="fas fa-image"></i> Video Thumbnail (Click to View)
-                </div>
-                <div class="thumbnail" id="thumbnail">
-                    <img src="" alt="Video thumbnail" id="thumbnail-img">
-                    <div class="play-icon">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                </div>
-            </div>
-
             <div class="info-container">
                 <div class="info-box">
                     <div class="info-title">
@@ -576,13 +515,11 @@
             const resultSection = document.getElementById('result-section');
             const loading = document.getElementById('loading');
             const videoPlayer = document.getElementById('video-player');
-            const thumbnailImg = document.getElementById('thumbnail-img');
             const fileName = document.getElementById('file-name');
             const fileSize = document.getElementById('file-size');
             const statusEl = document.getElementById('status');
             const downloadBtn = document.getElementById('download-btn');
             const streamBtn = document.getElementById('stream-btn');
-            const thumbnail = document.getElementById('thumbnail');
             
             // API endpoint
             const API_ENDPOINT = "https://silent-noor-stream-api.woodmirror.workers.dev/api?url=";
@@ -639,10 +576,7 @@
             function updateUI(data) {
                 // Set video source
                 videoPlayer.src = data.streaming_url;
-                
-                // Set thumbnail
-                thumbnailImg.src = data.thumbnail || "https://via.placeholder.com/500x280?text=No+Thumbnail";
-                thumbnailImg.alt = data.file_name;
+                         
                 
                 // Set info
                 fileName.textContent = data.file_name || "Unknown Video";
@@ -663,7 +597,7 @@
                 };
                 
                 // Show result section with animation
-                resultSection.style.display = 'block';
+                resultSec.style.display = 'block';
                 resultSection.style.animation = 'fadeIn 0.8s ease';
                 
                 // Scroll to results
