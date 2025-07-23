@@ -3,51 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Video Stream & Download</title>
+    <title>TeraBox Premium Video Stream & Download</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --pink: #f72585;
-            --dark: #0f172a;
-            --darker: #0c1221;
-            --light: #f8f9fa;
-            --gray: #94a3b8;
-            --card-bg: rgba(30, 41, 59, 0.85);
-            --card-border: rgba(255, 255, 255, 0.08);
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-            color: var(--light);
+            background: linear-gradient(135deg, #0c1221 0%, #0f172a 100%);
+            color: #f0f0f0;
             min-height: 100vh;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-attachment: fixed;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(59, 7, 100, 0.1) 0%, rgba(15, 23, 42, 0) 50%),
-                        radial-gradient(circle at 90% 80%, rgba(67, 97, 238, 0.1) 0%, rgba(15, 23, 42, 0) 50%);
-            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(59, 7, 100, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(67, 97, 238, 0.15) 0%, transparent 50%);
         }
 
         .container {
@@ -73,7 +49,7 @@
 
         .logo i {
             font-size: 3.5rem;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -83,18 +59,19 @@
 
         h1 {
             font-size: 3.2rem;
-            background: linear-gradient(45deg, var(--accent), var(--pink));
+            background: linear-gradient(45deg, #4cc9f0, #f72585);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 10px;
             font-weight: 700;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: #94a3b8;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
@@ -102,13 +79,13 @@
         }
 
         .input-section {
-            background: var(--card-bg);
+            background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--card-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
             margin-bottom: 40px;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             animation: slideUp 0.8s ease;
         }
 
@@ -121,7 +98,7 @@
         label {
             font-size: 1.4rem;
             font-weight: 600;
-            color: var(--accent);
+            color: #4cc9f0;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -140,7 +117,7 @@
             border-radius: 15px;
             border: none;
             background: rgba(15, 23, 42, 0.7);
-            color: var(--light);
+            color: #f8f9fa;
             font-size: 1.1rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
@@ -149,12 +126,12 @@
 
         input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: #4cc9f0;
             box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.05);
         }
 
         .submit-btn {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
             color: white;
             border: none;
             padding: 18px 40px;
@@ -202,14 +179,14 @@
 
         .result-section {
             display: none;
-            background: var(--card-bg);
+            background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--card-border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
             margin-top: 20px;
             width: 100%;
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             animation: fadeIn 0.8s ease;
         }
 
@@ -239,7 +216,7 @@
 
         .thumbnail-label {
             font-size: 1.3rem;
-            color: var(--pink);
+            color: #f72585;
             margin-bottom: 15px;
             font-weight: 600;
             display: flex;
@@ -278,7 +255,7 @@
         .thumbnail:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            border-color: var(--accent);
+            border-color: #4cc9f0;
         }
 
         .thumbnail img {
@@ -317,12 +294,12 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--card-border);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .info-title {
             font-size: 1.1rem;
-            color: var(--accent);
+            color: #4cc9f0;
             margin-bottom: 10px;
             font-weight: 600;
             display: flex;
@@ -333,7 +310,7 @@
         .info-value {
             font-size: 1.2rem;
             font-weight: 500;
-            color: var(--light);
+            color: #f8f9fa;
             word-break: break-word;
         }
 
@@ -380,7 +357,7 @@
         }
 
         .download-btn {
-            background: linear-gradient(45deg, var(--pink), #b5179e);
+            background: linear-gradient(45deg, #f72585, #b5179e);
         }
 
         .download-btn:hover {
@@ -389,7 +366,7 @@
         }
 
         .stream-btn {
-            background: linear-gradient(45deg, var(--accent), #4895ef);
+            background: linear-gradient(45deg, #4cc9f0, #4895ef);
         }
 
         .stream-btn:hover {
@@ -400,23 +377,23 @@
         .developer {
             text-align: center;
             margin-top: 40px;
-            color: var(--gray);
+            color: #94a3b8;
             font-size: 1rem;
             padding: 20px;
-            border-top: 1px solid var(--card-border);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             width: 100%;
             max-width: 800px;
         }
 
         .developer a {
-            color: var(--accent);
+            color: #4cc9f0;
             text-decoration: none;
             transition: all 0.3s;
         }
 
         .developer a:hover {
             text-decoration: underline;
-            color: var(--pink);
+            color: #f72585;
         }
 
         .loading {
@@ -429,10 +406,28 @@
             width: 50px;
             height: 50px;
             border: 5px solid rgba(76, 201, 240, 0.3);
-            border-top: 5px solid var(--accent);
+            border-top: 5px solid #4cc9f0;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
+        }
+
+        .status-indicator {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .status-success {
+            background-color: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+        
+        .status-error {
+            background-color: rgba(248, 113, 113, 0.2);
+            color: #f87171;
         }
 
         @keyframes spin {
@@ -492,8 +487,8 @@
             <div class="logo">
                 <i class="fas fa-play-circle"></i>
             </div>
-            <h1>Premium Video Stream & Download</h1>
-            <p class="subtitle">Paste your TeraBox link below to instantly stream and download high-quality videos using our lightning-fast proxy servers.</p>
+            <h1>TeraBox Premium Video Stream & Download</h1>
+            <p class="subtitle">Paste any TeraBox link to instantly stream and download high-quality videos</p>
         </header>
 
         <section class="input-section">
@@ -502,7 +497,7 @@
                     <i class="fas fa-link"></i> Enter TeraBox Video URL
                 </label>
                 <div class="input-container">
-                    <input type="url" id="video-link" placeholder="https://terabox.com/s/..." required>
+                    <input type="url" id="video-link" placeholder="https://teraboxapp.com/s/..." required>
                     <button class="submit-btn" id="submit-btn">
                         <i class="fas fa-paper-plane"></i> Process Video
                     </button>
@@ -539,21 +534,23 @@
                     <div class="info-title">
                         <i class="fas fa-file-video"></i> Video Title
                     </div>
-                    <div class="info-value" id="file-name">Video will be shown here</div>
+                    <div class="info-value" id="file-name">-</div>
                 </div>
                 
                 <div class="info-box">
                     <div class="info-title">
                         <i class="fas fa-weight-hanging"></i> File Size
                     </div>
-                    <div class="info-value" id="file-size">Calculating...</div>
+                    <div class="info-value" id="file-size">-</div>
                 </div>
                 
                 <div class="info-box">
                     <div class="info-title">
                         <i class="fas fa-info-circle"></i> Status
                     </div>
-                    <div class="info-value" id="status">Awaiting input...</div>
+                    <div class="info-value">
+                        <span class="status-indicator" id="status">Awaiting input</span>
+                    </div>
                 </div>
             </div>
 
@@ -646,4 +643,54 @@
                 // Set thumbnail
                 thumbnailImg.src = data.thumbnail || "https://via.placeholder.com/500x280?text=No+Thumbnail";
                 thumbnailImg.alt = data.file_name;
-  
+                
+                // Set info
+                fileName.textContent = data.file_name || "Unknown Video";
+                fileSize.textContent = data.file_size || "Unknown size";
+                statusEl.textContent = data.status || "✅ Ready";
+                statusEl.className = "status-indicator status-success";
+                
+                // Set download link
+                downloadBtn.href = data.proxy_url || "#";
+                downloadBtn.setAttribute('download', data.file_name || "video.mp4");
+                
+                // Set stream link
+                streamBtn.href = data.streaming_url || "#";
+                
+                // Make thumbnail clickable
+                thumbnail.onclick = function() {
+                    window.open(data.streaming_url, '_blank');
+                };
+                
+                // Show result section with animation
+                resultSection.style.display = 'block';
+                resultSection.style.animation = 'fadeIn 0.8s ease';
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            function showError(message) {
+                statusEl.textContent = message;
+                statusEl.className = "status-indicator status-error";
+                
+                // Show result section to display error
+                resultSection.style.display = 'block';
+                loading.style.display = 'none';
+                
+                // Scroll to status
+                statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            function isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
